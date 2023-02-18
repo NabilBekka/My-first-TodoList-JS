@@ -9,7 +9,6 @@ let list_faites=listTodos.filter(e=>e.completed===true)
 for (let todo of listTodos){
     idTodo++
 }
-console.log(listTodos)
 
 afficherTodos(listTodos)
 tachesFaites(listTodos)
@@ -38,7 +37,7 @@ function removeTodo(){
     const btnSup= document.querySelectorAll('.btn-sm')
     btnSup.forEach(el=>{
         el.addEventListener('click',e=>{
-            const id= e.currentTarget.id[3]
+            const id= e.currentTarget.parentElement.id
             for (let i = 0; i<listTodos.length;i++){
                 if (id == listTodos[i].id){
                     listTodos.splice(i,1)
@@ -80,15 +79,12 @@ function boutonCheck(){
     const btn = document.querySelectorAll('.form-check-input')
     btn.forEach(e=>{
         e.addEventListener('change',()=>{
-            // const i= e.parentElement.id[2]-1
-            // listTodos[i].completed=!listTodos[i].completed
-            const id = e.parentElement.id[2]
+            const id = e.parentElement.id
             for (let list of listTodos){
                 if (id == list.id){
                     list.completed=!list.completed
                 }
             }
-            console.log(listTodos)
             list_a_faire=listTodos.filter(e=>e.completed===false)
             list_faites=listTodos.filter(e=>e.completed===true)
             // console.log(listTodos,list_a_faire,list_faites)
@@ -152,7 +148,5 @@ function contolAffichage(){
             afficherTodos(list_faites)
         }else{
             afficherTodos(listTodos)
-            console.log(a_faire.classList[2])
-            console.log(faites.classList[2])
         }
 }

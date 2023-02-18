@@ -10,7 +10,7 @@ export function createTodo(todos,id,contenu,check,todoId){
     //Creattion du li
     const li = document.createElement('li')
     li.classList="todo list-group-item d-flex align-items-center"
-    li.id=`li${todoId}`
+    li.id=`${todoId}`
     //Creation des enfants du li
     const input= document.createElement('input')
     input.classList="form-check-input"
