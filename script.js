@@ -1,14 +1,11 @@
 import { lectureFetch } from "./scipts/api.js";
 import { createTodo } from "./scipts/functions.js";
 
-let idTodo = 0
 const listTodos = await lectureFetch()
 let list_a_faire=listTodos.filter(e=>e.completed===false)
 let list_faites=listTodos.filter(e=>e.completed===true)
 
-for (let todo of listTodos){
-    idTodo++
-}
+
 
 afficherTodos(listTodos)
 tachesFaites(listTodos)
@@ -43,6 +40,9 @@ function removeTodo(){
                     listTodos.splice(i,1)
                 }
             }
+            for (let i=0;i<listTodos.length;i++){
+                listTodos[i].id=i+1
+            }
             list_a_faire=listTodos.filter(e=>e.completed===false)
             list_faites=listTodos.filter(e=>e.completed===true)
             contolAffichage()
@@ -58,7 +58,6 @@ function ajoutTodo(){
     const formulaire= document.querySelector('form')
     formulaire.addEventListener('submit',e=>{
         e.preventDefault()
-        idTodo++
         const valeur= e.currentTarget.querySelector('.form-control').value.trim()
         if (valeur===''){
             e.currentTarget.reset()
@@ -66,7 +65,7 @@ function ajoutTodo(){
         }
         const newTodo={
             userId: 1,
-            id:idTodo,
+            id:listTodos.length+1,
             title: valeur,
             completed: false
         }
