@@ -59,7 +59,11 @@ function ajoutTodo(){
     formulaire.addEventListener('submit',e=>{
         e.preventDefault()
         idTodo++
-        const valeur= e.currentTarget.querySelector('.form-control').value
+        const valeur= e.currentTarget.querySelector('.form-control').value.trim()
+        if (valeur===''){
+            e.currentTarget.reset()
+            return
+        }
         const newTodo={
             userId: 1,
             id:idTodo,
